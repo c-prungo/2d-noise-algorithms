@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad093bb509ed2164ba28abadfb9de42e, type: 3}
   m_Name: BasicNoise
   m_EditorClassIdentifier: 
-  seed: 0
-  resolution: 100
-  scale: 10
-  octaves: 1
+  seed: 144
+  resolution: 287
+  scale: 55
+  octaves: 7
   lacunarity: 2
   persistence: 0.5
-  offset: {x: 0, y: 0}
-  warp: 0
+  offset: {x: 97.5, y: 0}
+  warp: 1
+  colour1: {r: 0.6084906, g: 0.9341653, b: 1, a: 0}
+  colour2: {r: 0.002911406, g: 0, b: 0.23584908, a: 0}
