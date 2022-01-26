@@ -9,11 +9,13 @@ public class MapGeneratorEditor : Editor
 
     MapGenerator mapGen;
     Editor noiseEditor;
+    Editor terrainEditor;
 
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector ();
         DrawSettingsEditor (mapGen.noiseSettings, ref mapGen.noiseSettingsFoldout, ref noiseEditor);
+        DrawSettingsEditor (mapGen.terrainSettings, ref mapGen.terrainSettingsFoldout, ref terrainEditor);
 
         if (GUILayout.Button ("Generate")) {
             mapGen.GenerateMap ();

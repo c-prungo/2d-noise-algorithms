@@ -5,11 +5,18 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour
 {
     public NoiseSettings noiseSettings;
+    public TerrainSettings terrainSettings;
+
+    public enum DrawMode {NoiseMap, ColourMap};
+    public DrawMode drawMode;
 
     public bool autoUpdate;
 
     [HideInInspector]
     public bool noiseSettingsFoldout;
+
+    [HideInInspector]
+    public bool terrainSettingsFoldout;
 
     public void GenerateMap() {
         float[,] noiseMap = Noise.GenerateNoiseMap(
@@ -20,9 +27,30 @@ public class MapGenerator : MonoBehaviour
             noiseSettings.lacunarity,
             noiseSettings.persistence,
             noiseSettings.offset,
-            noiseSettings.warp
+            noiseSettings.warp,
+            noiseSettings.includeTerrace,
+            noiseSettings.terraceDetail
         );
+
+        Color[] colourMap = new Color [noiseSettings.resolution * noiseSettings.resolution];
+        for (int y = 0; y < noiseSettings.resolution; y++) {
+            for (int x = 0; x < noiseSettings.resolution; x++) {
+                float currentHeight = noiseMap[x, y];
+                for (int i = 0; i < terrainSettings.regions.Length; i++) {
+                    if (currentHeight <= terrainSettings.regions[i].height) {
+                        colourMap [y * noiseSettings.resolution + x] = terrainSettings.regions[i].colour;
+                        break;
+                    }
+                }
+            }
+        }
         MapDisplay display = FindObjectOfType<MapDisplay> ();
-        display.DrawNoiseMap (noiseMap, noiseSettings.colour1, noiseSettings.colour2);
+
+        if (drawMode == DrawMode.NoiseMap) {
+            display.DrawTexture (TextureGenerator.TextureFromHeightMap(noiseMap));
+        }
+        else if (drawMode == DrawMode.ColourMap) {
+            display.DrawTexture (TextureGenerator.TextureFromColourMap(colourMap, noiseSettings.resolution, noiseSettings.resolution));
+        }
     }
 }

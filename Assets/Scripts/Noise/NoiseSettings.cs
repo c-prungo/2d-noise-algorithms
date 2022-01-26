@@ -20,6 +20,9 @@ public class NoiseSettings : ScriptableObject
     public Vector2 offset;
     [Range(0, 2)]
     public int warp;
+    public bool includeTerrace = false;
+    [Range(0, 50)]
+    public float terraceDetail = 0;
     public Color colour1;
     public Color colour2;
 }

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b5d230c8ed2534bb56ac3f069e8b6e, type: 3}
+  m_Name: TerrainSettings
+  m_EditorClassIdentifier: 
+  regions:
+  - name: Water
+    height: 0.4
+    colour: {r: 0.07369172, g: 0.29364708, b: 0.6792453, a: 0}
+  - name: Sand
+    height: 0.45
+    colour: {r: 0.8207547, g: 0.7498992, b: 0.42973477, a: 0}
+  - name: Grass
+    height: 0.55
+    colour: {r: 0.21703625, g: 0.5, b: 0, a: 0}
+  - name: Dark Grass
+    height: 0.6
+    colour: {r: 0.17751306, g: 0.4339623, b: 0.047080822, a: 0}
+  - name: Low Rock
+    height: 0.72
+    colour: {r: 0.24528301, g: 0.16727912, b: 0.13536845, a: 0}
+  - name: High Rock
+    height: 0.9
+    colour: {r: 0.2264151, g: 0.14114352, b: 0.10359559, a: 0}
+  - name: Snow
+    height: 1
+    colour: {r: 1, g: 1, b: 1, a: 0}

@@ -199,7 +199,7 @@ Transform:
   m_GameObject: {fileID: 478311632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 287, y: 1, z: 287}
+  m_LocalScale: {x: 100, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -248,8 +248,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noiseSettings: {fileID: 11400000, guid: 5e68d35c792252647ba9fde20791492e, type: 2}
+  terrainSettings: {fileID: 11400000, guid: 61bfba580b439d84e98f07113c0f333b, type: 2}
+  drawMode: 1
   autoUpdate: 1
   noiseSettingsFoldout: 1
+  terrainSettingsFoldout: 1
 --- !u!4 &834928641
 Transform:
   m_ObjectHideFlags: 0

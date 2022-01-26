@@ -12,7 +12,9 @@ public static class Noise
         float lacunarity,
         float persistence,
         Vector2 offset,
-        int warp
+        int warp,
+        bool includeTerrace,
+        float terraceDetail
     )
     {
 
@@ -33,7 +35,7 @@ public static class Noise
             warpOffsets[i] = newVector;
         }
 
-        float[,] noiseMap = CreateNoiseMap(resolution, scale, octaves, lacunarity, persistence, offsets, warp, warpOffsets);
+        float[,] noiseMap = CreateNoiseMap(resolution, scale, octaves, lacunarity, persistence, offsets, warp, warpOffsets, includeTerrace, terraceDetail);
 
         return noiseMap;
     }
@@ -46,7 +48,9 @@ public static class Noise
         float persistence,
         Vector2[] offsets,
         int warp,
-        Vector2[] warpOffsets
+        Vector2[] warpOffsets,
+        bool includeTerrace,
+        float terraceDetail
     )
     {
         float[,] noiseMap = new float[resolution, resolution];
@@ -62,6 +66,10 @@ public static class Noise
                 Vector2 coords = new Vector2(x/scale, y/scale);
                 // float noiseHeight = fbm (coords, octaves, lacunarity, persistence, offsets);
                 float noiseHeight = WarpPattern (coords, octaves, lacunarity, persistence, offsets, warp, warpOffsets);
+
+                if (includeTerrace) {
+                    noiseHeight = Mathf.Round(noiseHeight * terraceDetail) / terraceDetail;
+                }
 
                 // get max and min noiseheight dynamically
                 if (noiseHeight > maxNoiseHeight) {
