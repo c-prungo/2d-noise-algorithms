@@ -4,34 +4,58 @@ using UnityEngine;
 
 public static class MeshGenerator
 {
-    public static MeshData GenerateTerrainMesh (float[,] heightMap, int heightMultiplier, AnimationCurve heightCurve)
+    public static MeshData GenerateTerrainMesh (
+        float[,] heightMap,
+        int heightMultiplier,
+        AnimationCurve heightCurve,
+        bool includeTerrace,
+        float terraceDetail,
+        int levelOfDetail
+    )
     {
         int width = heightMap.GetLength(0);
         int height = heightMap.GetLength(1);
         float topLeftX = (width - 1) / -2f;
         float topLeftY = (height - 1) / 2f;
 
-        MeshData meshData = new MeshData (width, height);
+        int simplificationIncrement = (levelOfDetail == 0) ? 1 : levelOfDetail * 2;
+        int verticesPerLine = (width - 1) / simplificationIncrement + 1;
+
+        MeshData meshData = new MeshData (verticesPerLine, verticesPerLine);
         int vertexIndex = 0;
 
-        for (int y = 0; y < height; y++)
+        for (int y = 0; y < height; y += simplificationIncrement)
         {
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < width; x += simplificationIncrement)
             {
                 // generate vertices
-                meshData.vertices[vertexIndex] = new Vector3(x + topLeftX, heightCurve.Evaluate(heightMap[x, y]) * (float)heightMultiplier, topLeftY - y);
-                meshData.uvs[vertexIndex] = new Vector2(x/(float)width, y/(float)height);
+                float meshHeight = heightCurve.Evaluate(heightMap[x, y]);
+                if (includeTerrace) {
+                    meshHeight = Mathf.Round(meshHeight * terraceDetail) / terraceDetail;
+                }
+                meshHeight *= (float)heightMultiplier;
+                meshData.vertices[vertexIndex] = new Vector3 (
+                    x + topLeftX,
+                    meshHeight,
+                    topLeftY - y
+                );
+
+                // generate uvs
+                meshData.uvs[vertexIndex] = new Vector2 (
+                    x/(float)width,
+                    y/(float)height
+                );
 
                 // generate triangles
                 if ((y < height - 1) && (x < width - 1))
                 {
                     meshData.AddTriangle (
                         vertexIndex,
-                        vertexIndex + width + 1,
-                        vertexIndex + width
+                        vertexIndex + verticesPerLine + 1,
+                        vertexIndex + verticesPerLine
                     );
                     meshData.AddTriangle(
-                        vertexIndex + width + 1,
+                        vertexIndex + verticesPerLine + 1,
                         vertexIndex,
                         vertexIndex + 1
                     );

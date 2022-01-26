@@ -12,48 +12,15 @@ public static class Noise
         float lacunarity,
         float persistence,
         Vector2 offset,
-        int warp,
+        bool applyWarp,
         bool includeTerrace,
         float terraceDetail
     )
     {
 
-        // pseudorandom generation based on seed
-        System.Random prng = new System.Random (seed);
-        int randMax = Mathf.Max(octaves, warp);
-        Vector2[] offsets = new Vector2[randMax];
-        for (int i = 0; i < randMax; i++) {
-            float offsetX = prng.Next (-100000, 100000) + offset.x;
-            float offsetY = prng.Next (-100000, 100000) + offset.y;
-            offsets[i] = new Vector2 (offsetX, offsetY);
-        }
-
-        float[] offsetList = {0f, 0f, 5,2f, 1.3f, 1.7f, 9.3f, 8.3f, 2.8f};
-        Vector2[] warpOffsets = new Vector2[warp * 2];
-        for (int i = 0; i < warp * 2; i++) {
-            Vector2 newVector = new Vector2(offsetList[i*2], offsetList[i*2+1]);
-            warpOffsets[i] = newVector;
-        }
-
-        float[,] noiseMap = CreateNoiseMap(resolution, scale, octaves, lacunarity, persistence, offsets, warp, warpOffsets, includeTerrace, terraceDetail);
-
-        return noiseMap;
-    }
-
-    static float[,] CreateNoiseMap(
-        int resolution,
-        float scale,
-        int octaves,
-        float lacunarity,
-        float persistence,
-        Vector2[] offsets,
-        int warp,
-        Vector2[] warpOffsets,
-        bool includeTerrace,
-        float terraceDetail
-    )
-    {
         float[,] noiseMap = new float[resolution, resolution];
+
+        Vector2[] offsets = generateRandOffsets(seed, octaves, offset);
 
         // noise min and max vals for normalisation
         float maxNoiseHeight = float.MinValue;
@@ -65,7 +32,7 @@ public static class Noise
             {
                 Vector2 coords = new Vector2(x/scale, y/scale);
                 // float noiseHeight = fbm (coords, octaves, lacunarity, persistence, offsets);
-                float noiseHeight = WarpPattern (coords, octaves, lacunarity, persistence, offsets, warp, warpOffsets);
+                float noiseHeight = WarpPattern (coords, octaves, lacunarity, persistence, offsets, applyWarp);
 
                 if (includeTerrace) {
                     noiseHeight = Mathf.Round(noiseHeight * terraceDetail) / terraceDetail;
@@ -129,30 +96,45 @@ public static class Noise
         float lacunarity,
         float persistence,
         Vector2[] offsets,
-        int warp,
-        Vector2[] warpOffsets
+        bool applyWarp
     )
     {
 
-        Vector2 previousWarp = new Vector2(0, 0);
+        float noiseHeight;
 
-        // only executes if warp > 0
-        for (int i = 0; i < warp; i++) {
-            Vector2 currentWarp = new Vector2(
-                fbm (coords + (4f * previousWarp) + warpOffsets[i*2], octaves, lacunarity, persistence, offsets),
-                fbm (coords + (4f * previousWarp) + warpOffsets[i*2+1], octaves, lacunarity, persistence, offsets)
+        if (applyWarp) {
+            
+            // generate new vector2 coordinates using offset noise
+            Vector2 warpCoords = new Vector2(
+                fbm (coords, octaves, lacunarity, persistence, offsets),
+                fbm (coords + new Vector2 (5.2f, 1.3f), octaves, lacunarity, persistence, offsets)
             );
-            previousWarp = currentWarp;
 
+            // generate new noiseheight value with offset noise
+            noiseHeight = fbm (warpCoords, octaves, lacunarity, persistence, offsets);
         }
-
-        float noiseHeight = 0f;
-        if (warp > 0) {
-            noiseHeight = fbm (coords + 4*previousWarp, octaves, lacunarity, persistence, offsets);
-        }
-        else {
+        else
+        {
             noiseHeight = fbm (coords, octaves, lacunarity, persistence, offsets);
         }
+
         return noiseHeight;
+    }
+
+    static Vector2[] generateRandOffsets(
+        int seed,
+        int randMax,
+        Vector2 offset
+    )
+    {
+        // pseudorandom generation based on seed
+        System.Random prng = new System.Random (seed);
+        Vector2[] offsets = new Vector2[randMax];
+        for (int i = 0; i < randMax; i++) {
+            float offsetX = prng.Next (-100000, 100000) + offset.x;
+            float offsetY = prng.Next (-100000, 100000) + offset.y;
+            offsets[i] = new Vector2 (offsetX, offsetY);
+        }
+        return offsets;
     }
 }

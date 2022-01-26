@@ -12,25 +12,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73b5d230c8ed2534bb56ac3f069e8b6e, type: 3}
   m_Name: TerrainSettings
   m_EditorClassIdentifier: 
+  includeTerrace: 0
+  terraceDetail: 12.3
+  levelOfDetail: 0
+  heightMultiplier: 337
+  heightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.01906585
+      outSlope: 0.01906585
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.35545266
+      value: 0.006777007
+      inSlope: 0.008874763
+      outSlope: 0.008874763
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.48132932
+      value: 0.09671211
+      inSlope: 0.013265478
+      outSlope: 0.013265478
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.78861785
+      value: 0.5159732
+      inSlope: 2.1048205
+      outSlope: 2.1048205
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.08630796
+      outWeight: 0.052091785
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2.2898185
+      outSlope: 2.2898185
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   regions:
+  - name: Deep Water
+    height: 0.2
+    colour: {r: 0.024964403, g: 0.12171693, b: 0.4811321, a: 0}
   - name: Water
-    height: 0.4
+    height: 0.35
     colour: {r: 0.07369172, g: 0.29364708, b: 0.6792453, a: 0}
+  - name: Shallow Water
+    height: 0.4
+    colour: {r: 0.15881987, g: 0.37494168, b: 0.7830189, a: 0}
   - name: Sand
-    height: 0.45
+    height: 0.42
     colour: {r: 0.8207547, g: 0.7498992, b: 0.42973477, a: 0}
   - name: Grass
-    height: 0.55
+    height: 0.5
     colour: {r: 0.21703625, g: 0.5, b: 0, a: 0}
   - name: Dark Grass
-    height: 0.6
+    height: 0.54
     colour: {r: 0.17751306, g: 0.4339623, b: 0.047080822, a: 0}
   - name: Low Rock
-    height: 0.72
-    colour: {r: 0.24528301, g: 0.16727912, b: 0.13536845, a: 0}
+    height: 0.74
+    colour: {r: 0.33962262, g: 0.18399192, b: 0.04645782, a: 0}
   - name: High Rock
-    height: 0.9
-    colour: {r: 0.2264151, g: 0.14114352, b: 0.10359559, a: 0}
+    height: 0.86
+    colour: {r: 0.23584908, g: 0.10519502, b: 0.016687432, a: 0}
   - name: Snow
     height: 1
     colour: {r: 1, g: 1, b: 1, a: 0}

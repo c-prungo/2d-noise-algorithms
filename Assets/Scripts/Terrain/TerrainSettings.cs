@@ -6,9 +6,17 @@ using UnityEngine;
 public class TerrainSettings : ScriptableObject
 {
 
-    public TerrainType[] regions;
+    public bool includeTerrace;
+
+    [Range(1, 50)]
+    public float terraceDetail;
+
+    [Range (0, 6)]
+    public int levelOfDetail;
+
     public int heightMultiplier;
     public AnimationCurve heightCurve;
+    public TerrainType[] regions;
 
     [System.Serializable]
     public struct TerrainType {

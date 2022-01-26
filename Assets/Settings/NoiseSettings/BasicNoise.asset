@@ -13,14 +13,11 @@ MonoBehaviour:
   m_Name: BasicNoise
   m_EditorClassIdentifier: 
   seed: -10
-  resolution: 100
-  scale: 38
+  scale: 108
   octaves: 7
   lacunarity: 2
   persistence: 0.5
-  offset: {x: 119.1, y: 0}
-  warp: 0
+  offset: {x: 14.33, y: 29.21}
+  applyWarp: 0
   includeTerrace: 0
-  terraceDetail: 47.8
-  colour1: {r: 0.6084906, g: 0.9341653, b: 1, a: 0}
-  colour2: {r: 0.002911406, g: 0, b: 0.23584908, a: 0}
+  terraceDetail: 10
