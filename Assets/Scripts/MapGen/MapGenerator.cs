@@ -58,7 +58,7 @@ public class MapGenerator : MonoBehaviour
                 belowIndex = terrainIndex - 1;
             }
 
-            float percentMod = Mathf.InverseLerp (heightList[belowIndex], heightList[terrainIndex], i) / 2;
+            float percentMod = Mathf.InverseLerp (heightList[belowIndex], heightList[terrainIndex], i);
 
             // blend the colour
             Color lerpedColor = Color.Lerp(terrainSettings.regions[belowIndex].colour, terrainSettings.regions[terrainIndex].colour, percentMod);

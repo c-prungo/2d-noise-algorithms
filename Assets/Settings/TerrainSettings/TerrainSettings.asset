@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TerrainSettings
   m_EditorClassIdentifier: 
   includeTerrace: 0
-  terraceDetail: 12.3
+  terraceDetail: 14.2
   levelOfDetail: 0
   heightMultiplier: 337
   heightCurve:
@@ -69,29 +69,35 @@ MonoBehaviour:
     m_RotationOrder: 4
   regions:
   - name: Deep Water
-    height: 0.2
+    height: 0.06
     colour: {r: 0.024964403, g: 0.12171693, b: 0.4811321, a: 0}
   - name: Water
-    height: 0.35
-    colour: {r: 0.07369172, g: 0.29364708, b: 0.6792453, a: 0}
+    height: 0.26
+    colour: {r: 0.009344946, g: 0.26613504, b: 0.6603774, a: 0}
   - name: Shallow Water
-    height: 0.4
-    colour: {r: 0.15881987, g: 0.37494168, b: 0.7830189, a: 0}
+    height: 0.35
+    colour: {r: 0, g: 0.46206924, b: 0.8396226, a: 0}
   - name: Sand
-    height: 0.42
-    colour: {r: 0.8207547, g: 0.7498992, b: 0.42973477, a: 0}
+    height: 0.45
+    colour: {r: 0.754717, g: 0.6932498, b: 0.3025988, a: 0}
+  - name: Light Grass
+    height: 0.51
+    colour: {r: 0.3572679, g: 0.6320754, b: 0.032796368, a: 0}
   - name: Grass
-    height: 0.5
-    colour: {r: 0.21703625, g: 0.5, b: 0, a: 0}
+    height: 0.6
+    colour: {r: 0.2282796, g: 0.509434, b: 0.045656808, a: 0}
   - name: Dark Grass
-    height: 0.54
-    colour: {r: 0.17751306, g: 0.4339623, b: 0.047080822, a: 0}
+    height: 0.66
+    colour: {r: 0.20397168, g: 0.3679245, b: 0.04338732, a: 0}
   - name: Low Rock
     height: 0.74
-    colour: {r: 0.33962262, g: 0.18399192, b: 0.04645782, a: 0}
+    colour: {r: 0.46226418, g: 0.29938745, b: 0.07631719, a: 0}
+  - name: Rock
+    height: 0.79
+    colour: {r: 0.4056604, g: 0.22789054, b: 0.04018334, a: 0}
   - name: High Rock
-    height: 0.86
-    colour: {r: 0.23584908, g: 0.10519502, b: 0.016687432, a: 0}
+    height: 0.84
+    colour: {r: 0.31132078, g: 0.14986743, b: 0.024964407, a: 0}
   - name: Snow
     height: 1
     colour: {r: 1, g: 1, b: 1, a: 0}

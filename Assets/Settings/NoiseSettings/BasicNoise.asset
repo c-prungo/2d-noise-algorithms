@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad093bb509ed2164ba28abadfb9de42e, type: 3}
   m_Name: BasicNoise
   m_EditorClassIdentifier: 
-  seed: -10
-  scale: 108
-  octaves: 7
+  seed: 0
+  scale: 84
+  octaves: 8
   lacunarity: 2
   persistence: 0.5
-  offset: {x: 14.33, y: 29.21}
+  offset: {x: 7.96, y: 29.21}
   applyWarp: 0
   includeTerrace: 0
-  terraceDetail: 10
+  terraceDetail: 13.8
