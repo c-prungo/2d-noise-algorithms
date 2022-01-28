@@ -150,3 +150,6 @@ float WarpPattern (Vector2 coordinates)
 
 This can generate some very interesting landmasses, which we can be seen further down.  
 *Although I have limited them to one level of warp, as it has diminishing returns for landmasses*
+
+A very interesting tutorial that covers some applications of this aspect of noise can be found [here](https://www.iquilezles.org/www/articles/warp/warp.htm)
+*Courtesy once again of [Inigo Quilez](https://www.iquilezles.org/)*
