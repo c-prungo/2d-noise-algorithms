@@ -68,7 +68,7 @@ This describes the simple process of combining several layers of noise, each wit
 The result of this work gives us this noise-map, which we will use for almost everything going forward.  
 ![fractal-brownian-motion](https://user-images.githubusercontent.com/97237166/151536714-e6871769-492f-40fd-9d33-f29d3f8b894c.png)
 
-### Additional Noise Features
+### Noise Settings
 
 See below the noise settings used, and a brief description of each.
 
@@ -97,6 +97,8 @@ float WarpPattern (Vector2 coordinates)
 }
 ```
 
+![warped-fbm-0](https://user-images.githubusercontent.com/97237166/151548155-5be47cb8-abe5-48e8-bb04-c9efae78eddf.png)
+
 > f(p) = fbm (p);
 
 However, when we add domain warping, by applying an offset to the fbm call equal to a different fbm call for each direction (x, y), something interesting occurs.
@@ -113,6 +115,8 @@ float WarpPattern (Vector2 coordinates)
     // where scale is a small but arbitrary scaling factor (maybe around 3 - 4)
 }
 ```
+
+![warped-fbm-1](https://user-images.githubusercontent.com/97237166/151547736-800a4d11-abc1-4251-9461-7a04a9c9411d.png)
 
 > f(p) = fbm (p + fbm (p));
 
@@ -140,7 +144,9 @@ float WarpPattern (Vector2 coordinates)
 }
 ```
 
+![warped-fbm-2](https://user-images.githubusercontent.com/97237166/151547685-f5d5852e-718f-42be-aaca-6913c411c9c5.png)
+
 > f(p) = fbm (p + fbm (p + fbm (p)));
 
 This can generate some very interesting landmasses, which we can be seen further down.  
-*Although they are limited to one level of warp, as it has diminishing returns for landmasses*
+*Although I have limited them to one level of warp, as it has diminishing returns for landmasses*
