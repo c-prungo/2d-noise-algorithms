@@ -1,2 +1,3 @@
 # 2d-noise-algorithms
-using 2d noise samples to create interesting patterns
+
+Using 2d noise samples to create interesting patterns

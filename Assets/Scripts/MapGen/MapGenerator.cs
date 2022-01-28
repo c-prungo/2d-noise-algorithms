@@ -25,15 +25,7 @@ public class MapGenerator : MonoBehaviour
     public void GenerateMap() {
         float[,] noiseMap = Noise.GenerateNoiseMap(
             mapChunkSize,
-            noiseSettings.seed,
-            noiseSettings.scale,
-            noiseSettings.octaves,
-            noiseSettings.lacunarity,
-            noiseSettings.persistence,
-            noiseSettings.offset,
-            noiseSettings.applyWarp,
-            noiseSettings.includeTerrace,
-            noiseSettings.terraceDetail
+            noiseSettings
         );
 
         Color[] colourMap = new Color [mapChunkSize * mapChunkSize];

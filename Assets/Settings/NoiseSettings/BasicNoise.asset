@@ -17,7 +17,7 @@ MonoBehaviour:
   octaves: 8
   lacunarity: 2
   persistence: 0.5
-  offset: {x: 7.96, y: 29.21}
+  offset: {x: 23.2, y: 29.21}
   applyWarp: 0
   includeTerrace: 0
   terraceDetail: 13.8

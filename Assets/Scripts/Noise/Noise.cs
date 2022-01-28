@@ -6,21 +6,13 @@ public static class Noise
 {
     public static float[,] GenerateNoiseMap(
         int resolution,
-        int seed,
-        float scale,
-        int octaves,
-        float lacunarity,
-        float persistence,
-        Vector2 offset,
-        bool applyWarp,
-        bool includeTerrace,
-        float terraceDetail
+        NoiseSettings noiseSettings
     )
     {
 
         float[,] noiseMap = new float[resolution, resolution];
 
-        Vector2[] offsets = generateRandOffsets(seed, octaves, offset);
+        Vector2[] offsets = generateRandOffsets(noiseSettings.seed, noiseSettings.octaves, noiseSettings.offset);
 
         // noise min and max vals for normalisation
         float maxNoiseHeight = float.MinValue;
@@ -30,13 +22,8 @@ public static class Noise
         for (int y = 0; y < resolution; y++) {
             for (int x = 0; x < resolution; x++)
             {
-                Vector2 coords = new Vector2(x/scale, y/scale);
-                // float noiseHeight = fbm (coords, octaves, lacunarity, persistence, offsets);
-                float noiseHeight = WarpPattern (coords, octaves, lacunarity, persistence, offsets, applyWarp);
-
-                if (includeTerrace) {
-                    noiseHeight = Mathf.Round(noiseHeight * terraceDetail) / terraceDetail;
-                }
+                Vector2 coords = new Vector2(x/noiseSettings.scale, y/noiseSettings.scale);
+                float noiseHeight = WarpPattern (coords, noiseSettings, offsets);
 
                 // get max and min noiseheight dynamically
                 if (noiseHeight > maxNoiseHeight) {
@@ -92,30 +79,27 @@ public static class Noise
     // fractal pattern from 0 - 2 (two possible fractal settings)
     static float WarpPattern(
         Vector2 coords,
-        int octaves,
-        float lacunarity,
-        float persistence,
-        Vector2[] offsets,
-        bool applyWarp
+        NoiseSettings noiseSettings,
+        Vector2[] offsets
     )
     {
 
         float noiseHeight;
 
-        if (applyWarp) {
+        if (noiseSettings.applyWarp) {
             
             // generate new vector2 coordinates using offset noise
             Vector2 warpCoords = new Vector2(
-                fbm (coords, octaves, lacunarity, persistence, offsets),
-                fbm (coords + new Vector2 (5.2f, 1.3f), octaves, lacunarity, persistence, offsets)
+                fbm (coords, noiseSettings.octaves, noiseSettings.lacunarity, noiseSettings.persistence, offsets),
+                fbm (coords + new Vector2 (5.2f, 1.3f), noiseSettings.octaves, noiseSettings.lacunarity, noiseSettings.persistence, offsets)
             );
 
             // generate new noiseheight value with offset noise
-            noiseHeight = fbm (warpCoords, octaves, lacunarity, persistence, offsets);
+            noiseHeight = fbm (warpCoords, noiseSettings.octaves, noiseSettings.lacunarity, noiseSettings.persistence, offsets);
         }
         else
         {
-            noiseHeight = fbm (coords, octaves, lacunarity, persistence, offsets);
+            noiseHeight = fbm (coords, noiseSettings.octaves, noiseSettings.lacunarity, noiseSettings.persistence, offsets);
         }
 
         return noiseHeight;

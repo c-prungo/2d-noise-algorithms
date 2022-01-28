@@ -17,7 +17,4 @@ public class NoiseSettings : ScriptableObject
     public float persistence = 0.5f;
     public Vector2 offset;
     public bool applyWarp;
-    public bool includeTerrace = false;
-    [Range(1, 50)]
-    public float terraceDetail = 0;
 }
