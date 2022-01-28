@@ -58,3 +58,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Ignore new folder for images and gifs to display in the readme.md file on github
+VisualResources
