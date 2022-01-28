@@ -1,15 +1,13 @@
 # 2d-noise-algorithms
 
 Using 2d noise samples to create interesting patterns, heightmaps, and landmasses.  
-
-https://user-images.githubusercontent.com/97237166/151533699-0b50b575-f238-45e1-bbc8-82766eafe615.mp4
+![offset-video](https://user-images.githubusercontent.com/97237166/151536462-17297341-adfc-4886-a9e3-0a1a16e32035.gif)
 
 ## Generating Noise
 
 [Perlin Noise](https://en.wikipedia.org/wiki/Perlin_noise) is a form of coherent noise, meaning instead if purely random values, it generates values between 0 and 1 that flow in a smooth appearance, see below.
 
-![basic-perlin-noise](https://user-images.githubusercontent.com/97237166/151533348-651dffc2-13bb-4ab4-8f7a-de3a6bc3a736.png)
-
+![basic-perlin-noise](https://user-images.githubusercontent.com/97237166/151536648-66071baf-c911-4577-b979-6e45e778c885.png)
 
 This lends itself to the generation of a basic form of [Fractional Brownian Motion](https://en.wikipedia.org/wiki/Fractional_Brownian_motion).  
 This is generated using the following code snippet:
@@ -48,5 +46,4 @@ This describes the simple process of combining several layers of noise, each wit
 [Coding Adventure: Procedural Moons and Planets](https://youtu.be/lctXaT9pxA0?t=513)*
 
 The result of this work gives us this noise-map, which we will use for almost everything going forward.  
-![fractal-brownian-motion](https://user-images.githubusercontent.com/97237166/151535089-dff39e66-272a-4289-9a1d-7f780d0a148c.png)
-
+![fractal-brownian-motion](https://user-images.githubusercontent.com/97237166/151536714-e6871769-492f-40fd-9d33-f29d3f8b894c.png)
