@@ -84,18 +84,21 @@ public static class Noise
     )
     {
 
-        float noiseHeight;
+        float noiseHeight = 0;
+        Vector2 warpCoords = new Vector2(0f, 0f);
 
-        if (noiseSettings.applyWarp) {
-            
-            // generate new vector2 coordinates using offset noise
-            Vector2 warpCoords = new Vector2(
-                fbm (coords, noiseSettings.octaves, noiseSettings.lacunarity, noiseSettings.persistence, offsets),
-                fbm (coords + new Vector2 (5.2f, 1.3f), noiseSettings.octaves, noiseSettings.lacunarity, noiseSettings.persistence, offsets)
+        if (noiseSettings.warpOctaves > 0) {
+
+            for (int i = 0; i < noiseSettings.warpOctaves; i++) {
+                // generate new vector2 coordinates using offset noise
+            warpCoords = new Vector2(
+                fbm (coords + 4f * warpCoords + new Vector2 (4f, 2f), noiseSettings.octaves, noiseSettings.lacunarity, noiseSettings.persistence, offsets),
+                fbm (coords + 4f * warpCoords + new Vector2 (3f, 5f), noiseSettings.octaves, noiseSettings.lacunarity, noiseSettings.persistence, offsets)
             );
 
             // generate new noiseheight value with offset noise
-            noiseHeight = fbm (warpCoords, noiseSettings.octaves, noiseSettings.lacunarity, noiseSettings.persistence, offsets);
+            noiseHeight = fbm (coords + 4f * warpCoords, noiseSettings.octaves, noiseSettings.lacunarity, noiseSettings.persistence, offsets);
+            }
         }
         else
         {
