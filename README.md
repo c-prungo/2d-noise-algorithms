@@ -13,9 +13,9 @@ The term **noise** simply means generating a random value *between 0 and 1* for 
 
 ### Perlin Noise
 
-[Perlin Noise](https://en.wikipedia.org/wiki/Perlin_noise) is a form of coherent noise, meaning instead if purely random values, it generates values that flow in a smooth appearance, see below.
+[Perlin Noise](https://en.wikipedia.org/wiki/Perlin_noise) is a form of coherent noise, meaning instead if purely random values, it generates values that flow in a smooth appearance.
 
-![basic-perlin-noise](https://user-images.githubusercontent.com/97237166/151536648-66071baf-c911-4577-b979-6e45e778c885.png)
+![basic-perlin-noise](https://user-images.githubusercontent.com/97237166/151638145-c010a5da-d98e-430e-b996-c630e25f2ff6.png)
 
 >*Perlin noise was chosen simply because it is included as a standard Unity library*
 
