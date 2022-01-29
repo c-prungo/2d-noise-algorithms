@@ -7,6 +7,8 @@ Using 2d noise samples to create interesting patterns, heightmaps, and landmasse
 
 The term **noise** simply means generating a random value *between 0 and 1* for a given point on a *2D-plane*.
 
+![regular-noise](https://user-images.githubusercontent.com/97237166/151638052-c8273e77-0021-411b-8749-abedbe2bb7c8.png)
+
 ---
 
 ### Perlin Noise
